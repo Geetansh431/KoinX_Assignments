@@ -30,7 +30,6 @@ const CryptocurrencySchema = new Schema({
                 },
                 message: '{VALUE} is not a valid URL!'
             },
-            required: true
         }
     },
     current_price: {
@@ -125,7 +124,6 @@ const CryptocurrencySchema = new Schema({
         data_hash: {
             type: String,
             description: "SHA-256 hash of the data for integrity verification.",
-            required: true
         },
         version: {
             type: String,
