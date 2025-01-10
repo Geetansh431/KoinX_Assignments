@@ -38,7 +38,7 @@ const fetchCryptocurrencyData = async (req, res) => {
 
                 existingCrypto.security.data_hash = crypto.security.data_hash;
 
-                
+
                 existingCrypto.image.url = crypto.image.url;
 
                 await existingCrypto.save();
@@ -72,4 +72,36 @@ const fetchCryptocurrencyData = async (req, res) => {
     }
 };
 
-export default fetchCryptocurrencyData;
+
+const getCryptoStats = async (req, res) => {
+    try {
+        const { coin } = req.query;
+
+        // Validate the coin
+        if (!COINS.includes(coin)) {
+            return res.status(400).send('Invalid coin. Valid options are bitcoin, matic-network, ethereum.');
+        }
+
+        // Find the cryptocurrency by ID
+        const cryptocurrency = await Cryptocurrency.findOne({ id: coin });
+
+        if (!cryptocurrency) {
+            return res.status(404).send(`Cryptocurrency data for ${coin} not found.`);
+        }
+
+        // Extract only the required fields
+        const response = {
+            price: cryptocurrency.current_price.value, // Price in USD
+            marketCap: cryptocurrency.market_data.market_cap.value, // Market cap in USD
+            "24hChange": cryptocurrency.price_change.value_24h, // 24-hour change
+        };
+
+        res.status(200).send(response);
+    } catch (error) {
+        console.error('Error fetching cryptocurrency stats:', error);
+        res.status(500).send(`Error fetching cryptocurrency stats.${error}`);
+    }
+};
+
+
+export { fetchCryptocurrencyData, getCryptoStats };
