@@ -4,11 +4,9 @@ import cryptocurrencyRoutes from "./routes/cryptocurrency.js"; // Adjust path if
 
 const app = express();
 
-// Middleware
 app.use(cors());
-app.use(express.json()); // Parse JSON request bodies
+app.use(express.json()); 
 
-// Use the cryptocurrency routes
 app.use('/api/cryptocurrency', cryptocurrencyRoutes);
 
 export { app };

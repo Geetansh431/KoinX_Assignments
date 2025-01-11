@@ -3,7 +3,7 @@ import Cryptocurrency from '../models/Cryptocurrency.model.js';
 
 const fetchCryptoData = async (coinGeckoIds) => {
     try {
-        // Check if coinGeckoIds is an array or single value
+        
         const ids = Array.isArray(coinGeckoIds) ? coinGeckoIds : [coinGeckoIds];
         const response = await axios.get(`https://api.coingecko.com/api/v3/coins/markets`, {
             params: {
