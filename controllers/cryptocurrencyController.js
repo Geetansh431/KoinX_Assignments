@@ -139,15 +139,13 @@ const COINS = ['bitcoin', 'matic-network', 'ethereum'];
 const fetchCryptocurrencyData = async (req, res) => {
     try {
         console.log('Fetching Cryptocurrency Data...');
-
         const cryptocurrencies = ['bitcoin', 'matic-network', 'ethereum'];
 
         const data = await fetchCryptoData(cryptocurrencies);
 
-        // Check if data is an array
-        // if (!Array.isArray(data)) {
-        //     throw new Error('Fetched data is not an array.');
-        // }
+        if (!Array.isArray(data)) {
+            throw new Error('Fetched data is not an array.');
+        }
 
         for (const crypto of data) {
             const existingCrypto = await Cryptocurrency.findOne({ id: crypto.id });
@@ -201,7 +199,7 @@ const fetchCryptocurrencyData = async (req, res) => {
             await newPrice.save();
         }
 
-        res.status(200).send(data );
+        res.status(200).send({ data });
         console.log("Cryptocurrency data and prices updated successfully.");
     } catch (error) {
         console.error('Error fetching cryptocurrency data:', error);
