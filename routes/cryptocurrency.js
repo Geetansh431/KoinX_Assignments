@@ -20,7 +20,7 @@ router.get("/deviation", async (req, res) => {
             return res.status(400).json({ error: "Please provide a valid coin parameter." });
         }
 
-        // Fetch all available price records for the requested coin
+       
         const prices = await Price.find({ coin }).sort({ timestamp: -1 });
 
         if (prices.length === 0) {
@@ -29,7 +29,7 @@ router.get("/deviation", async (req, res) => {
 
         const priceValues = prices.map((record) => record.price);
 
-        // Calculate Standard Deviation
+        
         const deviation = calculateStandardDeviation(priceValues);
 
         res.json({ deviation: deviation.toFixed(2) });
