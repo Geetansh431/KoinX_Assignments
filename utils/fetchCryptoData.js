@@ -1,11 +1,11 @@
 import axios from 'axios';
-import Cryptocurrency from '../models/Cryptocurrency.model.js';
+import constants from '../config/constants.js';
 
 const fetchCryptoData = async (coinGeckoIds) => {
     try {
-        
+
         const ids = Array.isArray(coinGeckoIds) ? coinGeckoIds : [coinGeckoIds];
-        const response = await axios.get(`https://api.coingecko.com/api/v3/coins/markets`, {
+        const response = await axios.get(constants.baseUrl, {
             params: {
                 vs_currency: 'usd',
                 ids: ids.join(',')

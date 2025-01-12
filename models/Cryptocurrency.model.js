@@ -136,15 +136,15 @@ const CryptocurrencySchema = new Schema({
         description: "Timestamp of the last data update.",
         required: true
     }
-}, { timestamps: true });  
+}, { timestamps: true });
 
 CryptocurrencySchema.methods.populateRelatedData = async function () {
-    
+
     return this.populate('market_data').execPopulate();
 };
 
 CryptocurrencySchema.pre('save', function (next) {
-    
+
     if (this.isModified('price_change.value_24h')) {
         this.trend.is_bullish = this.price_change.value_24h > 0;
     }

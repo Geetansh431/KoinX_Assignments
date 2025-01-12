@@ -1,47 +1,5 @@
-# Compiled source files
-*.class
-
-# Package manager files
 node_modules/
-npm-debug.log
-yarn.lock
 
-# Environment files
 .env
-.env.local
-.env.production
-.env.test
 
-# Logs
-*.log
-
-# Database files
-*.sqlite
-*.db
-
-# Build output
-build/
-dist/
-
-# Cache
-.cache
-
-# Editor specific
-*.swp
-*.swo
-*.swc
-
-# Dependency directories
-vendor/
-.lib/
-
-# OS generated files
-.DS_Store
-Thumbs.db
-
-# Temporary files
-*.tmp
-*.bak
-
-# Other
-coverage/
+.git/
