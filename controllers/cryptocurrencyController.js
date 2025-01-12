@@ -1,8 +1,8 @@
 import axios from 'axios';
 import fetchCryptoData from "../utils/fetchCryptoData.js";
-import Cryptocurrency from '../models/Cryptocurrency.model.js';
+import Cryptocurrency from '../models/cryptocurrency.model.js';
 import cron from 'node-cron';
-import Price from '../models/price.js';
+import Price from '../models/price.model.js';
 import calculateStandardDeviation from '../utils/calculateStandardDeviation.js';
 
 const COINS = ['bitcoin', 'matic-network', 'ethereum'];
